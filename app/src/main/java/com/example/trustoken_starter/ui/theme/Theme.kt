@@ -50,9 +50,9 @@ fun TrusToken_StarterTheme(
         else -> LightColorScheme
     }
 
-    MaterialTheme(
-        colorScheme = colorScheme,
-        typography = Typography,
-        content = content
-    )
+//    MaterialTheme(
+////        colorScheme = colorScheme,
+////        typography = Typography,
+////        content = content
+//    )
 }

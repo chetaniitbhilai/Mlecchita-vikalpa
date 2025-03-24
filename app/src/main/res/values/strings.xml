@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Pocket Money</string>
+<!--    <string name="app_name">Pocket Money</string>-->
     <string name="set_allowance">Set Allowance</string>
     <string name="scan_qr">Scan QR Code</string>
     <string name="view_history">View Transaction History</string>

@@ -5,20 +5,23 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_height="match_parent"
         android:gravity="center"
+        android:orientation="vertical"
         android:padding="16dp">
 
         <!-- Spacer View to push content down -->
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
+<!--        <View-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:layout_marginTop="70dp"-->
+<!--            />-->
 
         <TextView
             android:id="@+id/token_name"
             android:layout_width="wrap_content"
+            android:layout_marginTop="100dp"
             android:layout_height="wrap_content"
             android:text="Trustoken Status: Not Connected"
             android:textSize="18sp" />
@@ -27,31 +30,31 @@
             android:id="@+id/detect_token"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Detect Trustoken"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="20dp"
+            android:text="Detect Trustoken" />
 
         <Button
             android:id="@+id/set_allowance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Set Allowance"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp"
+            android:text="Set Allowance" />
 
         <TextView
             android:id="@+id/remaining_allowance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:text="Remaining: 0"
-            android:textSize="18sp"
-            android:layout_marginTop="10dp"/>
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/view_history"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="10dp"
             android:text="View Transaction History"
-            android:textSize="16sp"
-            android:padding="10dp" />
+            android:textSize="16sp" />
 
         <Button
             android:id="@+id/scan_qr"
