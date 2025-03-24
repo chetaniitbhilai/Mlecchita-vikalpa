@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private double remainingAllowance = 1000;
     private boolean isTokenConnected = false;
     private static final String ACTION_USB_PERMISSION = "com.example.USB_PERMISSION";
+    private static final int SCAN_QR_REQUEST = 1;
     private List<String> transactionHistory = new ArrayList<>();
 
     @Override
@@ -54,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
         btnScanQR.setOnClickListener(v -> {
             Intent intent = new Intent(this, QRScannerActivity.class);
-            startActivity(intent);
+            startActivityForResult(intent, SCAN_QR_REQUEST); // Fix
         });
 
         btnViewHistory.setOnClickListener(v -> {
@@ -95,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1 && resultCode == RESULT_OK && data != null) {
+        if (requestCode == SCAN_QR_REQUEST && resultCode == RESULT_OK && data != null) {
             String qrData = data.getStringExtra("qrData");
             processTransaction(qrData);
         }
