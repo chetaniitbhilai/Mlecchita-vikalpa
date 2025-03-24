@@ -2,36 +2,41 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:layout_gravity="center">
 
     <TextView
+        android:style="@style/CustomTextStyle"
         android:id="@+id/remaining_allowance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Remaining Allowance: 0"
-        android:textSize="18sp"
-        android:layout_gravity="center_horizontal"/>
+        />
 
     <Button
+        android:style="@style/CustomButtonStyle"
         android:id="@+id/set_allowance"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Set Allowance"
-        android:layout_marginTop="16dp"/>
+        />
 
     <Button
+        android:style="@style/CustomButtonStyle"
         android:id="@+id/scan_qr"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Scan QR Code"
-        android:layout_marginTop="16dp"/>
+        />
 
     <Button
+        android:style="@style/CustomButtonStyle"
         android:id="@+id/view_history"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="View Transaction History"
-        android:layout_marginTop="16dp"/>
+        />
 
 </LinearLayout>

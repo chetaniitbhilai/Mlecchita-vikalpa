@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Light Blue Background -->
+    <solid android:color="#007fff" />  <!-- Light Blue Color -->
+
+    <!-- Rounded Corners -->
+    <corners android:radius="20dp" />  <!-- Border radius for rounded corners -->
+
+    <padding
+        android:left="24dp"
+        android:top="12dp"
+        android:right="24dp"
+        android:bottom="12dp"
+        />
+
+</shape>

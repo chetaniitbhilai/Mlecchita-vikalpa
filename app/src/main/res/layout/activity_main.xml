@@ -8,25 +8,18 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="16dp">
-
-        <!-- Spacer View to push content down -->
-<!--        <View-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="0dp"-->
-<!--            android:layout_weight="1"-->
-<!--            android:layout_marginTop="70dp"-->
-<!--            />-->
+        android:padding="16dp"
+        android:layout_gravity="center">
 
         <TextView
+            android:style="@style/CustomTextStyle"
             android:id="@+id/token_name"
             android:layout_width="wrap_content"
-            android:layout_marginTop="100dp"
             android:layout_height="wrap_content"
-            android:text="Trustoken Status: Not Connected"
-            android:textSize="18sp" />
+            android:text="Trustoken Status: Not Connected" />
 
         <Button
+            android:style="@style/CustomButtonStyle"
             android:id="@+id/detect_token"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -34,33 +27,35 @@
             android:text="Detect Trustoken" />
 
         <Button
+            android:style="@style/CustomButtonStyle"
             android:id="@+id/set_allowance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:text="Set Allowance" />
 
         <TextView
+            android:style="@style/CustomTextStyle"
             android:id="@+id/remaining_allowance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Remaining: 0"
-            android:textSize="18sp" />
+            android:layout_marginTop="20dp"
+            android:text="Remaining: 0" />
 
         <Button
+            android:style="@style/CustomButtonStyle"
             android:id="@+id/view_history"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="View Transaction History"
-            android:textSize="16sp" />
+            android:layout_marginTop="20dp"
+            android:text="View Transaction History" />
 
         <Button
+            android:style="@style/CustomButtonStyle"
             android:id="@+id/scan_qr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:text="Scan QR Code" />
 
     </LinearLayout>

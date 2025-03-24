@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Custom style for buttons -->
+    <style name="CustomButtonStyle">
+        <item name="android:background">@drawable/button_background</item>
+        <item name="android:textColor">@android:color/white</item> <!-- Button text color -->
+        <item name="android:textStyle">bold</item> <!-- Bold text -->
+        <item name="android:textSize">16sp</item> <!-- Text size -->
+        <item name="android:layout_marginTop">10dp</item> <!-- Margin on top -->
+    </style>
+
+    <style name="CustomTextStyle">
+        <item name="android:textColor">@android:color/black</item> <!-- Button text color -->
+        <item name="android:textStyle">bold</item> <!-- Bold text -->
+        <item name="android:textSize">20sp</item> <!-- Text size -->
+        <item name="android:padding">12dp</item> <!-- Button padding -->
+        <item name="android:layout_marginTop">10dp</item> <!-- Margin on top -->
+    </style>
+
+</resources>
