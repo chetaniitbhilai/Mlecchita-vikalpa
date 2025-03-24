@@ -1,27 +1,31 @@
 package com.example.trustoken_starter;
 
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-import java.util.ArrayList;
+import java.util.List;
 
 public class TransactionHistoryActivity extends AppCompatActivity {
-    private ListView listView;
-    private ArrayList<String> transactions;
-    private ArrayAdapter<String> adapter;
+    private TextView tvHistory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction_history);
 
-        listView = findViewById(R.id.transaction_list);
-        transactions = new ArrayList<>();
-        transactions.add("Bought Item A - ₹50");
-        transactions.add("Bought Item B - ₹30");
+        tvHistory = findViewById(R.id.history_text);
 
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, transactions);
-        listView.setAdapter(adapter);
+        List<String> transactions = getIntent().getStringArrayListExtra("transactions");
+
+        StringBuilder historyText = new StringBuilder("Transaction History:\n");
+        if (transactions != null && !transactions.isEmpty()) {
+            for (String transaction : transactions) {
+                historyText.append(transaction).append("\n");
+            }
+        } else {
+            historyText.append("No transactions yet.");
+        }
+
+        tvHistory.setText(historyText.toString());
     }
 }

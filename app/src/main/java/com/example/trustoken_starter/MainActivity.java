@@ -23,8 +23,8 @@ public class MainActivity extends AppCompatActivity {
     private double remainingAllowance = 1000;
     private boolean isTokenConnected = false;
     private static final String ACTION_USB_PERMISSION = "com.example.USB_PERMISSION";
-    private static final int SCAN_QR_REQUEST = 1;
     private List<String> transactionHistory = new ArrayList<>();
+    private static final int QR_REQUEST_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
             if (isTokenConnected) {
                 dailyAllowance = 1000.0;
                 remainingAllowance = dailyAllowance;
+                transactionHistory.clear(); // Reset history
                 updateRemainingAllowanceText();
                 Toast.makeText(this, "Allowance Set", Toast.LENGTH_SHORT).show();
             } else {
@@ -55,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
         btnScanQR.setOnClickListener(v -> {
             Intent intent = new Intent(this, QRScannerActivity.class);
-            startActivityForResult(intent, SCAN_QR_REQUEST); // Fix
+            startActivityForResult(intent, QR_REQUEST_CODE);
         });
 
         btnViewHistory.setOnClickListener(v -> {
@@ -96,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == SCAN_QR_REQUEST && resultCode == RESULT_OK && data != null) {
+        if (requestCode == QR_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
             String qrData = data.getStringExtra("qrData");
             processTransaction(qrData);
         }
