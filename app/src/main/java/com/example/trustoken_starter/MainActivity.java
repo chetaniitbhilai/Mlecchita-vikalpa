@@ -17,8 +17,8 @@ import java.util.HashMap;
 public class MainActivity extends AppCompatActivity {
     private Button btnSetAllowance, btnScanQR, btnViewHistory, btnDetectToken;
     private TextView tvRemainingAllowance, tvTokenName;
-    private double dailyAllowance = 0;
-    private double remainingAllowance = 0;
+    private double dailyAllowance = 1000;
+    private double remainingAllowance = 1000;
     private boolean isTokenConnected = false;
     private static final String ACTION_USB_PERMISSION = "com.example.USB_PERMISSION";
 
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
         btnSetAllowance.setOnClickListener(v -> {
             if (isTokenConnected) {
-                dailyAllowance = 100.0;
+                dailyAllowance = 1000.0;
                 remainingAllowance = dailyAllowance;
                 tvRemainingAllowance.setText("Remaining: " + remainingAllowance);
                 Toast.makeText(this, "Allowance Set", Toast.LENGTH_SHORT).show();
@@ -83,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
+
         return -1;
     }
 
@@ -97,4 +98,6 @@ public class MainActivity extends AppCompatActivity {
     private int getFileDescriptor(UsbManager manager, UsbDevice device) {
         return manager.openDevice(device) != null ? manager.openDevice(device).getFileDescriptor() : -1;
     }
+
+
 }

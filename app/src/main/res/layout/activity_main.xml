@@ -1,45 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/token_name"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Trustoken Status: Not Connected"
-        android:textSize="18sp" />
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingTop="50dp"
+        android:padding="16dp">
 
-    <Button
-        android:id="@+id/detect_token"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Detect Trustoken" />
+        <TextView
+            android:id="@+id/token_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Trustoken Status: Not Connected"
+            android:textSize="18sp" />
 
-    <Button
-        android:id="@+id/set_allowance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Set Allowance" />
+        <Button
+            android:id="@+id/detect_token"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Detect Trustoken"
+            android:layout_marginTop="20dp"/>
 
-    <TextView
-        android:id="@+id/remaining_allowance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Remaining: 0"
-        android:textSize="18sp" />
+        <Button
+            android:id="@+id/set_allowance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Set Allowance"
+            android:layout_marginTop="10dp"/>
 
-    <Button
-        android:id="@+id/scan_qr"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Scan QR Code" />
+        <TextView
+            android:id="@+id/remaining_allowance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Remaining: 0"
+            android:textSize="18sp"
+            android:layout_marginTop="10dp"/>
 
-    <Button
-        android:id="@+id/view_history"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="View Transaction History" />
-</LinearLayout>
+        <Button
+            android:id="@+id/scan_qr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Scan QR Code"
+            android:layout_marginTop="10dp"/>
+
+        <Button
+            android:id="@+id/view_history"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="View Transaction History"
+            android:layout_marginTop="10dp"/>
+    </LinearLayout>
+
+</ScrollView>
