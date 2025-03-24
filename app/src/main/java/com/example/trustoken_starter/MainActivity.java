@@ -1,5 +1,6 @@
 package com.example.trustoken_starter;
 
+import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
@@ -7,7 +8,9 @@ import android.hardware.usb.UsbDevice;
 import android.hardware.usb.UsbManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.InputType;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -44,11 +47,29 @@ public class MainActivity extends AppCompatActivity {
 
         btnSetAllowance.setOnClickListener(v -> {
             if (isTokenConnected) {
-                dailyAllowance = 1000.0;
-                remainingAllowance = dailyAllowance;
-                transactionHistory.clear(); // Reset history
-                updateRemainingAllowanceText();
-                Toast.makeText(this, "Allowance Set", Toast.LENGTH_SHORT).show();
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("Set Allowance");
+
+                final EditText input = new EditText(this);
+                input.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+                input.setHint("Enter daily allowance");
+                builder.setView(input);
+
+                builder.setPositiveButton("Set", (dialog, which) -> {
+                    String value = input.getText().toString();
+                    if (!value.isEmpty()) {
+                        dailyAllowance = Double.parseDouble(value);
+                        remainingAllowance = dailyAllowance;
+                        transactionHistory.clear();
+                        updateRemainingAllowanceText();
+                        Toast.makeText(this, "Allowance Set to ₹" + dailyAllowance, Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(this, "Invalid input", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
+                builder.show();
             } else {
                 Toast.makeText(this, "Trustoken Required", Toast.LENGTH_SHORT).show();
             }
