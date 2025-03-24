@@ -12,7 +12,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import org.json.JSONObject;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private Button btnSetAllowance, btnScanQR, btnViewHistory, btnDetectToken;
@@ -21,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private double remainingAllowance = 1000;
     private boolean isTokenConnected = false;
     private static final String ACTION_USB_PERMISSION = "com.example.USB_PERMISSION";
+    private List<String> transactionHistory = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,22 +37,15 @@ public class MainActivity extends AppCompatActivity {
         btnDetectToken = findViewById(R.id.detect_token);
         tvRemainingAllowance = findViewById(R.id.remaining_allowance);
 
-        btnDetectToken.setOnClickListener(v -> {
-            int fd = detectSmartCard();
-            if (fd != -1) {
-                isTokenConnected = true;
-                Toast.makeText(this, "Trustoken Connected", Toast.LENGTH_SHORT).show();
-            } else {
-                isTokenConnected = false;
-                Toast.makeText(this, "Trustoken Not Found", Toast.LENGTH_SHORT).show();
-            }
-        });
+        updateRemainingAllowanceText();
+
+        btnDetectToken.setOnClickListener(v -> detectSmartCard());
 
         btnSetAllowance.setOnClickListener(v -> {
             if (isTokenConnected) {
                 dailyAllowance = 1000.0;
                 remainingAllowance = dailyAllowance;
-                tvRemainingAllowance.setText("Remaining: " + remainingAllowance);
+                updateRemainingAllowanceText();
                 Toast.makeText(this, "Allowance Set", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(this, "Trustoken Required", Toast.LENGTH_SHORT).show();
@@ -58,18 +54,19 @@ public class MainActivity extends AppCompatActivity {
 
         btnScanQR.setOnClickListener(v -> {
             Intent intent = new Intent(this, QRScannerActivity.class);
-            startActivityForResult(intent, 1);
+            startActivity(intent);
         });
 
         btnViewHistory.setOnClickListener(v -> {
             Intent intent = new Intent(this, TransactionHistoryActivity.class);
+            intent.putStringArrayListExtra("transactions", new ArrayList<>(transactionHistory));
             startActivity(intent);
         });
     }
 
-    private int detectSmartCard() {
+    private void detectSmartCard() {
         UsbManager usbManager = (UsbManager) getSystemService(Context.USB_SERVICE);
-        if (usbManager == null) return -1;
+        if (usbManager == null) return;
 
         HashMap<String, UsbDevice> deviceList = usbManager.getDeviceList();
         for (UsbDevice device : deviceList.values()) {
@@ -79,25 +76,51 @@ public class MainActivity extends AppCompatActivity {
                 usbManager.requestPermission(device, permissionIntent);
 
                 if (usbManager.hasPermission(device)) {
-                    return getFileDescriptor(usbManager, device);
+                    isTokenConnected = true;
+                    tvTokenName.setText("Trustoken");
+                    Toast.makeText(this, "Trustoken Connected", Toast.LENGTH_SHORT).show();
+                    return;
                 }
             }
         }
 
-        return -1;
+        isTokenConnected = false;
+        Toast.makeText(this, "Trustoken Not Found", Toast.LENGTH_SHORT).show();
     }
 
     private boolean isSmartCardReader(UsbDevice device) {
-        if (device.getVendorId() == 10381 && device.getProductId() == 64) {
-            tvTokenName.setText("Trustoken");
-            return true;
+        return device.getVendorId() == 10381 && device.getProductId() == 64;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1 && resultCode == RESULT_OK && data != null) {
+            String qrData = data.getStringExtra("qrData");
+            processTransaction(qrData);
         }
-        return false;
     }
 
-    private int getFileDescriptor(UsbManager manager, UsbDevice device) {
-        return manager.openDevice(device) != null ? manager.openDevice(device).getFileDescriptor() : -1;
+    private void processTransaction(String qrData) {
+        try {
+            JSONObject jsonObject = new JSONObject(qrData);
+            String item = jsonObject.getString("thing");
+            double price = jsonObject.getDouble("price");
+
+            if (remainingAllowance - price < 0) {
+                Toast.makeText(this, "Can't proceed, insufficient allowance!", Toast.LENGTH_SHORT).show();
+            } else {
+                remainingAllowance -= price;
+                transactionHistory.add(item + " - ₹" + price);
+                updateRemainingAllowanceText();
+                Toast.makeText(this, "Transaction Successful!", Toast.LENGTH_SHORT).show();
+            }
+        } catch (Exception e) {
+            Toast.makeText(this, "Invalid QR Data", Toast.LENGTH_SHORT).show();
+        }
     }
 
-
+    private void updateRemainingAllowanceText() {
+        tvRemainingAllowance.setText("Remaining: ₹" + remainingAllowance);
+    }
 }
