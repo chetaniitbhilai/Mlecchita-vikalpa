@@ -46,21 +46,17 @@ PocketMoneyApp/
 ```
 
 ## Functionality Breakdown
-### 1. MainActivity.kt
+### 1. MainActivity.java
 - Initializes the app
 - Displays user balance
 - Handles navigation to transaction history and QR scanner
 
-### 2. TrusToken.kt
-- Defines Trust Token operations
-- Manages token balance
-- Deducts amount on payment
 
-### 3. TransactionHistoryActivity.kt
+### 2. TransactionHistoryActivity.java
 - Fetches transaction records
 - Displays a list of transactions
 
-### 4. QRScannerActivity.kt
+### 3. QRScannerActivity.java
 - Scans QR codes for payment processing
 - Extracts item and price details from JSON
 - Example JSON scanned:
