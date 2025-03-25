@@ -106,6 +106,12 @@ PocketMoneyApp/
 ## Contribution
 Feel free to submit pull requests to improve the application.
 
+
+**Sample QR**
+![image](https://github.com/user-attachments/assets/e9bd77f6-b14a-4bd4-9a05-4d05b04efde6)
+![image](https://github.com/user-attachments/assets/2c962fb1-576e-4a28-a1fc-f7e98b1864a6)
+![image](https://github.com/user-attachments/assets/9cb2ff65-c3df-4d7c-a7e1-df20ba1676f5)
+
 ---
 
 ### Contact
