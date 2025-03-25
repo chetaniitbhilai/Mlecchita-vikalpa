@@ -23,10 +23,10 @@ PocketMoneyApp/
 │   │   │   │   ├── Color.kt
 │   │   │   │   ├── Theme.kt
 │   │   │   │   ├── Type.kt
-│   │   │   ├── MainActivity.kt # Main Screen Logic
-│   │   │   ├── QRScannerActivity.kt # Handles QR Payments
-│   │   │   ├── TransactionHistoryActivity.kt # Transaction Logs
-│   │   │   ├── TrusToken.kt    # Trust Token Handling
+│   │   │   ├── MainActivity.java # Main Screen Logic
+│   │   │   ├── QRScannerActivity.java # Handles QR Payments
+│   │   │   ├── TransactionHistoryActivity.java # Transaction Logs
+│   │   │   ├── TrusToken.java    # Trust Token Handling
 │   ├── res/
 │   │   ├── drawable/           # App Icons & Images
 │   │   ├── layout/             # UI Layout XMLs
@@ -109,5 +109,5 @@ Feel free to submit pull requests to improve the application.
 ---
 
 ### Contact
-For queries or contributions, reach out at **chetan@iitbhilai.ac.in**, **kirtiraj@iitbhilai.ac.in**, **bhavyaj@iitbhilai.ac.in**, **kritia@iitbhilai.ac.in**.
+For queries or contributions, reach out at **chetan@iitbhilai.ac.in**, **kirtiraj@iitbhilai.ac.in**, **bhavyaj@iitbhilai.ac.in**, **kritia@iitbhilai.ac.in**, **manopriyam@iitbhilai.ac.in**.
 
